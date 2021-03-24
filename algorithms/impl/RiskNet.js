@@ -9,3 +9,4 @@ class RiskNet extends BayesianNet{
     }
 
 }
+export default RiskNet;
