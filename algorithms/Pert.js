@@ -1,5 +1,4 @@
-const cdf = require('./Utils.js')
-var gaussian = require('gaussian');
+import gaussian from 'gaussian'
 class Pert {
     constructor(tasks){
         this.tasks = tasks
@@ -91,9 +90,6 @@ class Pert {
         }
     }
 }
-console.log('start PERT test')
-const taskList = require('./test/TaskDataSample')
-let pert = new Pert(taskList)
-pert.updateChildParent()
-pert.updatePertProb()
-console.log(taskList)
+export default Pert;
+// module.exports = Pert
+

@@ -1,5 +1,5 @@
 
-[
+export default  [
     {
         "id": 1,
         "taskId": "A",
