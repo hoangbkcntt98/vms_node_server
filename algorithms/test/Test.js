@@ -1,24 +1,8 @@
 import RiskNet from '../impl/RiskNet.js'
 import taskList from './TaskDataSample.js'
 import riskList from './DataSample.js'
-import Array2d from 'array-2d'
 import Pert from '../Pert.js'
 import TaskNet from '../impl/TaskNet.js'
-// Test Risk Net
-// let riskNet = new RiskNet('riskNet',riskList)
-// riskNet.init()
-// riskNet.updateProb()
-// let risks = riskNet.getRiskList()
-// risks.forEach(element => {
-//     console.log(element.prob)
-// });
-// Test Pert
-// let pert = new Pert(taskList)
-// pert.updateTaskList()
-// pert.updatePertProb()
-// let cp = pert.getCriticalPath()
-// console.log(cp)
-// Test Task Risk
 // Step 1: Caculate risk Prob
 let riskNet = new RiskNet('riskNet',riskList)
 riskNet.init()
