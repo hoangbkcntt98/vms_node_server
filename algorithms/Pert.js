@@ -1,5 +1,4 @@
-const cdf = require('./Utils.js')
-var gaussian = require('gaussian');
+import gaussian from 'gaussian'
 class Pert {
     constructor(tasks){
         this.tasks = tasks
@@ -90,15 +89,7 @@ class Pert {
             t.pertProb = prob
         }
     }
-    getCriticalPath(){
-        console.log(this.tasks.filter(t => t.taskInformation.slack==0).map(t1=> t1.taskId))
-        return this.tasks.filter(t => t.taskInformation.slack==0)
-    }
 }
-console.log('start PERT test')
-const taskList = require('./test/TaskDataSample')
-let pert = new Pert(taskList)
-pert.updateChildParent()
-pert.updatePertProb()
-pert.getCriticalPath()
-// console.log(taskList)
+export default Pert;
+// module.exports = Pert
+
