@@ -1,5 +1,7 @@
-import express from 'express';
-import RiskDis from '../models/RiskDis.js'
+const express = require('express')
+const RiskDis = require('../models/RiskDis')
+// import express from 'express';
+// import RiskDis from '../models/RiskDis.js'
 const router = express.Router();
 
 router.get('/',async(req,res) => {
@@ -7,4 +9,5 @@ router.get('/',async(req,res) => {
     const riskDisList = await RiskDis.find()
     res.json(riskDisList)
 })
-export default router;
+module.exports = router
+// export default router;

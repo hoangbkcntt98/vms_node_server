@@ -1,4 +1,5 @@
-import gaussian from 'gaussian'
+// import gaussian from 'gaussian'
+const gaussian = require('gaussian')
 class Pert {
     constructor(tasks){
         this.tasks = tasks
@@ -96,6 +97,6 @@ class Pert {
         }
     }
 }
-export default Pert;
-// module.exports = Pert
+// export default Pert;
+module.exports = Pert
 

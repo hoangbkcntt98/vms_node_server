@@ -1,4 +1,4 @@
-const data =
+
     [
         {
             "description": "Do giá nâng của các thiết bị vận chuyển không chắc chắn",
@@ -570,4 +570,3 @@ const data =
             }
         }
     ]
-export default data;

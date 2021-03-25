@@ -1,8 +1,8 @@
-import RiskNet from '../impl/RiskNet.js'
-import taskList from './TaskDataSample.js'
-import riskList from './DataSample.js'
-import Pert from '../Pert.js'
-import TaskNet from '../impl/TaskNet.js'
+const RiskNet =  require( '../impl/RiskNet.js')
+const taskList =  require( './TaskDataSample')
+const riskList =  require( './RiskDataSample')
+const Pert =  require( '../Pert.js')
+const TaskNet =  require( '../impl/TaskNet.js')
 // Step 1: Caculate risk Prob
 let riskNet = new RiskNet('riskNet',riskList)
 riskNet.init()

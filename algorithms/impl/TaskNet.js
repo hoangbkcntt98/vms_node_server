@@ -1,6 +1,6 @@
-import BayesianNet from '../BayesianNetwork.js'
-import product from 'cartesian-product'
-import { Node, Table } from 'bayes-server';
+const BayesianNet = require('../BayesianNetwork')
+const product = require('cartesian-product')
+const {Node,Table} = require('bayes-server')
 class TaskNet extends BayesianNet{
     constructor(name,probList){ // probList = [[Duration_Prob],RiskNode_Prob,TaskNode_Prob]
         super(name)
@@ -68,4 +68,4 @@ class TaskNet extends BayesianNet{
         
     }
 }
-export default TaskNet;
+module.exports = TaskNet

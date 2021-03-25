@@ -1,35 +1,35 @@
-import express from 'express';
-import Risk from '../models/Risk.js'
-import RiskDis from '../models/RiskDis.js'
+const express = require('express')
+var mongoose = require('mongoose');
+mongoose.connect(
+    'mongodb://localhost:27017/vms', 
+    {useNewUrlParser: true}
+)
+const Risk = require('../models/Risk')
+const RiskDis = require('../models/RiskDis')
 const router = express.Router();
 
-// const router = express.Router();
-// const Risk = require('../models/Risk')
-//fetRiskDis if risk has not riskDis
 router.get('/riskUpdate',async(req,res)=>{
     try{
-       
-    const risks = await Risk.find();
-    risks.forEach(async(risk)=>{
-        console.log('update risk '+ risk.id)
-        risk.riskDis = await RiskDis.findOne({id:risk.id}); 
-        let parents = risk.parents
-        if(parents!=''&& parents!=undefined){
-            parents = parents.split(' ')
-            console.log(parents)
-            for(const par of parents){
-                var parent = await Risk.findOne({id:par})
-                if(risk.parentList.length<parents.length)
-                risk.parentList = [...risk.parentList,parent]
+        const risks = await Risk.find();
+        risks.forEach(async(risk)=>{
+            console.log('update risk '+ risk.id)
+            risk.riskDis = await RiskDis.findOne({id:risk.id}); 
+            let parents = risk.parents
+            if(parents!=''&& parents!=undefined){
+                parents = parents.split(' ')
+                console.log(parents)
+                for(const par of parents){
+                    var parent = await Risk.findOne({id:par})
+                    if(risk.parentList.length<parents.length)
+                    risk.parentList = [...risk.parentList,parent]
+                }
             }
-        }
-        await risk.save()
-    })
-    res.json(risks)
-}catch(err){
-    res.json(err)
-}
-    // risks.save()
+            await risk.save()
+        })
+        res.json(risks)
+    }catch(err){
+        res.json(err)
+    }
 })
 //get all
 router.get('/',async(req,res)=>{
@@ -102,4 +102,5 @@ router.post('/',async(req,res)=>{
         }
     })
 })
-export default router;
+module.exports = router
+// export default router;

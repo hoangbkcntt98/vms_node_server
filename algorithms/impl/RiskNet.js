@@ -1,6 +1,6 @@
-import BayesianNet from '../BayesianNetwork.js'
-import product from 'cartesian-product'
-import { Node, Table } from 'bayes-server';
+const BayesianNet = require('../BayesianNetwork')
+const product = require('cartesian-product')
+const {Node,Table} = require('bayes-server')
 class RiskNet extends BayesianNet{
     constructor(name,riskList){
         super(name)
@@ -49,28 +49,16 @@ class RiskNet extends BayesianNet{
                 risks = [...risks,par]
             })
         }
-       
         risks = [...risks,risk]
-        // console.log(risks.length)
         let stateIter = []
-        
         for(let r of risks){
             let states = []
             let node = this.getNode(r.id.toString())
-           
             states = [...states,this.getNodeState(node,this.TRUE)]
             states = [...states,this.getNodeState(node,this.FALSE)]
-            // states = [...states,1]
-            // states = [...states,0]
-            // console.log(`risk ${risk.id}`)
             stateIter = [...stateIter,states]
-            // console.log(stateIter.length)
         }
-     
         this.TFMatrix = product(stateIter)
-        // console.log(TFMatrix.length)
-        // return TFMatrix
-
     }
     calcProb(risk){
         if(risk.parentList.length==0){
@@ -79,17 +67,14 @@ class RiskNet extends BayesianNet{
         this.generateTFMatrix(risk)
         this.initEngine()
         let childNode  = this.getNode(risk.id.toString())
-        let nodes = [] // contain node and parents
+        let nodes = [] // contain node and its parents
         for(let par of risk.parentList){
             nodes = [...nodes,this.getNode(par.id.toString())]
         }
         nodes = [...nodes,childNode]
-       
         let result = 0;
         let row = this.TFMatrix.length
         let col = this.TFMatrix[0].length
-        // console.log(`row : ${this.TFMatrix.length}`)
-        // console.log(`col : ${this.TFMatrix[0].length}`)
         for(let rowState of this.TFMatrix){
             // console.log(this.TFMatrix[row].length)
             try{
@@ -118,4 +103,5 @@ class RiskNet extends BayesianNet{
     }
 
 }
-export default RiskNet;
+module.exports = RiskNet;
+// export default RiskNet;
