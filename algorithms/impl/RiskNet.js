@@ -80,10 +80,11 @@ class RiskNet extends BayesianNet{
         this.initEngine()
         let childNode  = this.getNode(risk.id.toString())
         let nodes = [] // contain node and parents
-        nodes = [...nodes,childNode]
         for(let par of risk.parentList){
             nodes = [...nodes,this.getNode(par.id.toString())]
         }
+        nodes = [...nodes,childNode]
+       
         let result = 0;
         let row = this.TFMatrix.length
         let col = this.TFMatrix[0].length
@@ -94,7 +95,7 @@ class RiskNet extends BayesianNet{
             try{
                
                 let queryRow = new Table(nodes)
-                this.inference.queryDistributions.pushDistribution(queryRow)
+                this.inference.queryDistributions.pushDistribution(queryRow) 
                 this.inference.query(this.queryOptions,this.queryOutput)
                 
                 if(rowState[col-1]==this.getNodeState(childNode,this.TRUE)){
