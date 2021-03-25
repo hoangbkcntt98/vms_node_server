@@ -8,16 +8,20 @@ const router = express.Router();
 //fetRiskDis if risk has not riskDis
 router.get('/riskUpdate',async(req,res)=>{
     try{
-
+       
     const risks = await Risk.find();
     risks.forEach(async(risk)=>{
-        
+        console.log('update risk '+ risk.id)
         risk.riskDis = await RiskDis.findOne({id:risk.id}); 
         let parents = risk.parents
-        var parentList = []
-        for(const par of parents){
-            var parent = await Risk.findOne({id:par})
-            risk.parentList = [...risk.parentList,parent]
+        if(parents!=''&& parents!=undefined){
+            parents = parents.split(' ')
+            console.log(parents)
+            for(const par of parents){
+                var parent = await Risk.findOne({id:par})
+                if(risk.parentList.length<parents.length)
+                risk.parentList = [...risk.parentList,parent]
+            }
         }
         await risk.save()
     })

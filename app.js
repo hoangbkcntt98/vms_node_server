@@ -29,6 +29,7 @@ app.use(cors())
 app.use('/risks',risksRoute)
 app.use('/riskDis',riskDisRoute)
 // Connect to DB
+console.log(process.env.DB_CONNECTION)
 mongoose.connect(
     process.env.DB_CONNECTION, 
     {useNewUrlParser: true},

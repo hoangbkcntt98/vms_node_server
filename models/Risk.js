@@ -9,10 +9,10 @@ const RiskSchema = mongoose.Schema({
         type: String,
         required : true
     },
-    parents:[{
-        type: Number,
+    parents:{
+        type: String,
         required : false
-    }],
+    },
     description:{
         type:String,
         default:'',

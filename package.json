@@ -5,16 +5,21 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
+    "test" :"nodemon ./algorithms/test/Test.js",
     "start": "nodemon app.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "array-2d": "^1.0.2",
     "bayes-server": "^8.1.0",
     "body-parser": "^1.19.0",
+    "cartesian-product": "^2.1.2",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
+    "es-iter": "^1.1.1",
     "express": "^4.17.1",
+    "itertools": "^1.6.1",
     "mongoose": "^5.12.1",
     "nodemon": "^2.0.7"
   }

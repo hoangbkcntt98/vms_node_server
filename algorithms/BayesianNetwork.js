@@ -8,11 +8,12 @@ function BayesianNet(name){
     this.addNode = (name) =>{
         this.bayesianNet.nodes.push(new Node(name,[new State("True"),new State("False")]))
     }
-    this.generateTFMatrix = () =>{
-
-    }
+  
     this.addLink = (parent,child) =>{
         this.bayesianNet.links.push(new Link(parent,child))
+    }
+    this.addLinkStr = (parentStr,childStr) =>{
+        this.bayesianNet.links.push(new Link(this.getNode(parentStr),this.getNode(childStr)))
     }
     this.addCptTable = (nodes,problist) =>{
         // console.log(nodes)
@@ -24,9 +25,15 @@ function BayesianNet(name){
     this.getNode = (name) =>{
         return this.bayesianNet.nodes.get(name)
     }
-    this.getNodeState = (node,state) =>{
+    this.getNodeState =  (node,state) =>{
         // console.log(node.variables())
         return node.variables.get(0).states.get(state)
+    }
+    this.initEngine = () =>{
+        this.factory = new RelevanceTreeInferenceFactory();
+        this.inference = this.factory.createInferenceEngine(this.bayesianNet);
+        this.queryOptions = this.factory.createQueryOptions();
+        this.queryOutput = this.factory.createQueryOutput();
     }
     this.getNet = ()=>{
         return this.bayesianNet
