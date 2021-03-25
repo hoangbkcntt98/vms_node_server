@@ -31,10 +31,22 @@ app.use('/riskDis',riskDisRoute)
 // Connect to DB
 console.log(process.env.DB_CONNECTION)
 mongoose.connect(
-    process.env.DB_CONNECTION, 
+    'mongodb://localhost:27017/vms', 
     {useNewUrlParser: true},
-    ()=>{
+    ()=>{   
         console.log('connected to DB')
     }
 )
+const schema = new mongoose.Schema({
+  name: String
+}, {
+  capped: { size: 1024 },
+  bufferCommands: false,
+  autoCreate: false // disable `autoCreate` since `bufferCommands` is false
+});
+
+const Model = mongoose.model('Test', schema);
+// Explicitly create the collection before using it
+// so the collection is capped.
+await Model.createCollection();
 app.listen(5000)

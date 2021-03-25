@@ -33,7 +33,9 @@ router.get('/riskUpdate',async(req,res)=>{
 })
 //get all
 router.get('/',async(req,res)=>{
+    console.log('all risk')
     const risks = await Risk.find().populate("riskDis").populate("parentList");
+    console.log(risks)
     // console.log(risks)
     res.json({
         object: risks

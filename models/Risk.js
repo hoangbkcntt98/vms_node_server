@@ -1,5 +1,12 @@
-import mongoose from 'mongoose'
+// import mongoose from 'mongoose'
+// import bluebird from 'bluebird'
+// mongoose.Promise = bluebird
 // const mongoose = require('mongoose')
+
+var mongoose = require('mongoose');
+mongoose.Promise = require('bluebird');
+var Schema = mongoose.Schema,
+    ObjectId = Schema.ObjectId;
 const RiskSchema = mongoose.Schema({
     id:{
         type: Number,
@@ -31,4 +38,6 @@ const RiskSchema = mongoose.Schema({
         ref: "risk"
     }]
 })
-export default mongoose.model('risk',RiskSchema,'risk')
+const Risk = mongoose.model('Risk',RiskSchema,'risk')
+module.exports = Risk
+// export default mongoose.model('risk',RiskSchema,'risk')
