@@ -1,6 +1,10 @@
 // import mongoose from 'mongoose'
 // const mongoose = require('mongoose')
 var mongoose = require('mongoose');
+mongoose.connect(
+    'mongodb://localhost:27017/vms', 
+    {useNewUrlParser: true}
+)
 mongoose.Promise = require('bluebird');
 var Schema = mongoose.Schema,
     ObjectId = Schema.ObjectId;

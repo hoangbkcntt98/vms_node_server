@@ -1,11 +1,7 @@
 const express = require('express')
 var mongoose = require('mongoose');
-mongoose.connect(
-    'mongodb://localhost:27017/vms', 
-    {useNewUrlParser: true}
-)
 const Risk = require('../models/Risk')
-const RiskDis = require('../models/RiskDis')
+// const RiskDis = require('../models/RiskDis')
 const router = express.Router();
 
 router.get('/riskUpdate',async(req,res)=>{
